@@ -37,7 +37,10 @@
 }
 
 .home-container .container {
-	padding: 10px;
-	display: flex;
 	background-color: #E5E5E5;
+}
+
+.home-container ul {
+	display: flex;
+	list-style: none;
 }

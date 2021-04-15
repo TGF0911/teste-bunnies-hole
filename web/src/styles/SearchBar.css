@@ -1,4 +1,4 @@
-.search {
+.searchBar {
 	position: relative;
 	padding: 24px;
 	width: 370px;
@@ -15,10 +15,16 @@
 	align-items: center;
 }
 
-.search input {
+.searchBar input {
 	outline: none;
 	border: 0;	
 	font-weight: 400;
 	font-size: 14px;
 	color: #A2A2A2;
+}
+
+.searchBar button{
+	cursor: pointer;
+	border: 0;
+	background-color: #FFFFFF;
 }

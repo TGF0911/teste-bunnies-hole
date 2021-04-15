@@ -6,40 +6,42 @@ import videoImg from '../assets/videoThumb.png'
 import audioImg from '../assets/audioThumb.png'
 import photoImg from '../assets/imageThumb.png'
 
+import '../styles/Card.css';
+
 //Icons diferentes para cada tipo de Card
 //Imagens diferentes para cada tipo de card  
 //{type, name, value, rating, thumbnail }
 
-const Card = (type, name, value, rating, thumbnail) => {
+const Card = () => {
 
-  function thumbnailImg() {
+  // function thumbnailImg(thumbnail) {
 
-    //fazer de um jeito melhor
+  //   //fazer de um jeito melhor
 
-    if (!thumbnail) {
-      if (type == 'audio') {
-        return audioImg;
-      } else if (type == 'video') {
-        return videoImg;
-      } else {
-        return  photoImg;
-      }
-    }
-  }
+  //   if (!thumbnail) {
+  //     if (type == 'audio') {
+  //       return audioImg;
+  //     } else if (type == 'video') {
+  //       return videoImg;
+  //     } else {
+  //       return  photoImg;
+  //     }
+  //   }
+  // }
 
   return (
     <div className="card-container">
       {
-        thumbnail ? ( <img src={thumbnail} /> ) : (<img src={thumbnailImg()} />)
+        //thumbnail ? ( <img src={thumbnail} /> ) : (<img src={thumbnailImg()} />)
       }
+      <img src={videoImg}/>
 
       <div className="icon">
         <BsCameraVideo size={24} color="rgba(202, 18, 64, 0.8)" />
       </div>
 
-
-      <div class="footer">
-        <div class="text-card">
+      <div className="footer">
+        <div className="text-card">
           <h3>Como tocar cuica</h3>
           <p>Nota: 9.5</p>
         </div>
