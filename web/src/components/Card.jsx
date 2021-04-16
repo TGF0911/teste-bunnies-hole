@@ -8,44 +8,37 @@ import photoImg from '../assets/imageThumb.png'
 
 import '../styles/Card.css';
 
-//Icons diferentes para cada tipo de Card
 //Imagens diferentes para cada tipo de card  
 //{type, name, value, rating, thumbnail }
 
-const Card = () => {
+const Card = (props) => {
 
-  // function thumbnailImg(thumbnail) {
+  function thumbnailImg() {
+    if (props.thumbnail === "") {
+      if (props.type == 'audio') return (<img src={audioImg} />);
+      else if (props.type == 'video') return (<img src={videoImg} />);
+      else return (<img src={photoImg} />);
+    } else return  (<img src={props.thumbnail} />);
+  }
 
-  //   //fazer de um jeito melhor
-
-  //   if (!thumbnail) {
-  //     if (type == 'audio') {
-  //       return audioImg;
-  //     } else if (type == 'video') {
-  //       return videoImg;
-  //     } else {
-  //       return  photoImg;
-  //     }
-  //   }
-  // }
+  function icons() {
+    if (props.type == 'audio') return (<BsMic size={24} color="rgba(202, 18, 64, 0.8)" />)
+    else if (props.type == 'video') return (<BsCameraVideo size={24} color="rgba(202, 18, 64, 0.8)" />)
+    else return (<FiCamera size={24} color="rgba(202, 18, 64, 0.8)" />)
+  }
 
   return (
     <div className="card-container">
-      {
-        //thumbnail ? ( <img src={thumbnail} /> ) : (<img src={thumbnailImg()} />)
-      }
-      <img src={videoImg}/>
+      {thumbnailImg()}
 
-      <div className="icon">
-        <BsCameraVideo size={24} color="rgba(202, 18, 64, 0.8)" />
-      </div>
+      <div className="icon">{icons()}</div>
 
       <div className="footer">
         <div className="text-card">
-          <h3>Como tocar cuica</h3>
-          <p>Nota: 9.5</p>
+          <h3>{props.name}</h3>
+          <p>Nota: {props.rating}</p>
         </div>
-        <h3>R$ 120.99</h3>
+        <h3>R$ {props.value}</h3>
       </div>
     </div>
   )

@@ -1,13 +1,15 @@
 .card-container  {
-	margin: 30px 44px;
-	width: 350px;
+	margin: 20px 22px;
+	width: 370px;
 	height: 280px;
 	border-radius: 10px;
 	background-color: white;
 }
 
 .card-container  img {
-	width: 350px;
+	width: 370px;
+	height: 170px;
+	border-radius: 10px 10px 0px 0px;
 }
 
 .card-container .icon {
@@ -40,7 +42,7 @@
 	color: rgba(202, 18, 64, 0.8);
 }
 
-.card-container  .footer p {
+.card-container .footer .text-card p {
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 14px;

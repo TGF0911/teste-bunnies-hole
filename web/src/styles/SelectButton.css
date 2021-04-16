@@ -1,0 +1,73 @@
+.select-box {
+  display: flex;
+  width: 150px;
+  flex-direction: column;
+}
+
+.select-box .option-container{
+  background-color: #FFF;
+  color: rgba(50, 50, 50, 0.71);
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 0px 0px 10px;
+  overflow: hidden;
+}
+
+.select-box .selected {
+  position: relative;
+  width: 150px;
+  margin-bottom: 8px;
+  color: rgba(202, 18, 64, 0.8);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-box .selected .arrow::after {
+  content: "";
+  background-size: contain;
+
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 10px;
+  top: 5px;
+
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+}
+
+.select-box .options-container.active + .selected .arrow::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+
+.select-box .option,
+.selected {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.select-box .option:hover {
+  background: #414b57;
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
+.select-box .option .radio::after {
+  background-color: rgba(202, 18, 64, 0.8);
+}

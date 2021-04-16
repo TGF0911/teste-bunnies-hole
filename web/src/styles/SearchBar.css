@@ -1,10 +1,14 @@
-.searchBar {
+.search-container{
+	display: flex;
+	justify-content: center;
+}
+
+.search-container .searchBar {
 	position: relative;
 	padding: 24px;
 	width: 370px;
 	height: 46px;
 	top: -30px;
-	left: 500px;
 
 	background: #FFFFFF;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -15,7 +19,7 @@
 	align-items: center;
 }
 
-.searchBar input {
+.search-container .searchBar input {
 	outline: none;
 	border: 0;	
 	font-weight: 400;
@@ -23,7 +27,7 @@
 	color: #A2A2A2;
 }
 
-.searchBar button{
+.search-container .searchBar button{
 	cursor: pointer;
 	border: 0;
 	background-color: #FFFFFF;

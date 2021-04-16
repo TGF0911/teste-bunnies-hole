@@ -14,43 +14,35 @@ import './global.css'
 
 //Falta fazer os filtros, loading e ordenação.
 
-
 function App() {
-  // const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [searchParams, setSearchParams] = useState('');
+  const [filter, setFilter] = useState('');
 
-  // useEffect(() => {
-  //   api.get('/products').then(({ data }) => setProducts(data));
-  // }, [])
+  useEffect(() => {
+    api.get('products').then(({ data }) => setProducts(data));
+    console.log(products)
+  }, []);
 
-  //Metodo de pesquisa.
-  // function searchProducts() {
-  //   const results = api.get('/search', { params: { searchParams: searchParams } });
+  async function search(e) {
+    e.preventDefault();
+    const response = await api.get('products/search', { params: { searchParams: searchParams } });
+    setProducts(response.data);
+    console.log(searchParams, response.data);
+  }
 
-  //   //Colocar um if para caso não encontrar nenhum produto com esse nome.
-  //   if (!results) {
-  //     return (
-  //       <div className="not-found">
-  //         <h1>Não encontramos nenhum produto com este nome. :(</h1>
-  //         <p>Que tal tentar novamente?</p>
-  //       </div>
-  //     )
-  //   }
+  async function filterBy() {
+    const response = await api.get('products/filter', { params: { filter: filter } });
+    setProducts(response.data);
+  }
 
-  // }
-
-  // //Metodo de filtragem.
-  // function productsFilter() {
-  //   api.get('products/filter', { params: { type: type } });
-  // }
-
-  // //Metodo de ordenação.
-  // function sortProducts() {
-  //   api.get('sortProdcuts', { params: { selected: selected } });
-  // }
+  async function sortBy() {
+    const response = await api.get('products/sortBy', { params: { filter: filter } });
+    setProducts(response.data);
+  }
 
   return (
     <div className="home-container">
-
       <header>
         <div className="logo">
           <img src={logoImg} />
@@ -58,36 +50,35 @@ function App() {
         <div className="text-header">
           <h1>Bunny video browser</h1>
           <p>Encontre os melhores videos aqui</p>
-
         </div>
       </header>
 
+      {/* SeachBar */}
+      <SearchBar
+        value={searchParams}
+        onChange={(e) => setSearchParams(e.target.value)}
+        onClick={search}
+      />
 
-      <div className="container">
-
-        <SearchBar />
-
+      {/* Select-Box
+      <div className="selects">
         <SelectButton />
-      <ul>
-        <li><Card/></li>
-        <li><Card/></li>
-        <li><Card/></li>
-      </ul>
+      </div> */}
 
-        {/* <ul>
-          {products.map((product) => {
-            <li>
-              <Card
-                key={product._id}
-                type={product.type}
-                name={product.name}
-                rating={product.rating}
-                thumbnail={product.thumbnail}
-              />
-            </li>
-          })}
-        </ul> */}
-
+      {/* Card  */}
+      <div className="container">
+        {products.map((product) => {
+          return (
+            <Card
+              key={product._id}
+              name={product.name}
+              value={product.value}
+              rating={product.rating}
+              type={product.type}
+              thumbnail={product.thumbnail}
+            />
+          )
+        })}
 
       </div>
     </div>
