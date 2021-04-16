@@ -1,25 +1,25 @@
 .card-container  {
-	margin: 20px 22px;
-	width: 370px;
-	height: 280px;
+	margin: 26px;
+	width: 374px;
+	height: 260px;
 	border-radius: 10px;
 	background-color: white;
 }
 
 .card-container  img {
-	width: 370px;
-	height: 170px;
+	width: 374px;
+	height: 160px;
 	border-radius: 10px 10px 0px 0px;
 }
 
 .card-container .icon {
 	position: relative;
-	top: -30px;
+	top: -24px;
 	left: 160px;
 	background: #FFFFFF;
 	border-radius: 50%;
-	width: 50px;
-	height: 50px;
+	width: 45px;
+	height: 45px;
 	box-shadow: 0px 4px 4px rgba(89, 123, 252, 0.2);
 
 	display: flex;

@@ -10,14 +10,15 @@ import api from './services/api';
 
 import './global.css'
 
-//Integração com Axios.
-
-//Falta fazer os filtros, loading e ordenação.
+//Falta estilização dos selects
+//Falta colocar o Loader
+//Falta arrumar a parte no not found.
 
 function App() {
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useState('');
   const [filter, setFilter] = useState('');
+  const [found, setFound] = useState(true);
 
   useEffect(() => {
     api.get('products').then(({ data }) => setProducts(data));
@@ -27,8 +28,14 @@ function App() {
   async function search(e) {
     e.preventDefault();
     const response = await api.get('products/search', { params: { searchParams: searchParams } });
+
+    //Faer isso funcionar
+    if (!response.data) {
+      setFound(false)
+      console.log(found);
+    }
     setProducts(response.data);
-    console.log(searchParams, response.data);
+    
   }
 
   async function filterBy() {
@@ -67,18 +74,26 @@ function App() {
 
       {/* Card  */}
       <div className="container">
-        {products.map((product) => {
-          return (
-            <Card
-              key={product._id}
-              name={product.name}
-              value={product.value}
-              rating={product.rating}
-              type={product.type}
-              thumbnail={product.thumbnail}
-            />
-          )
-        })}
+        {
+          found ?
+            products.map((product) => {
+              return (
+                <Card
+                  key={product._id}
+                  name={product.name}
+                  value={product.value}
+                  rating={product.rating}
+                  type={product.type}
+                  thumbnail={product.thumbnail}
+                />
+              )
+            }) : (
+              <div className="not-found">
+                <h2>Não há produtos com este nome.</h2>
+                <p>Tente novamente!</p>
+              </div>
+            )
+        }
 
       </div>
     </div>

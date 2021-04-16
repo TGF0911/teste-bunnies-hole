@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsSearch } from 'react-icons/bs';
+import { FaSearch } from 'react-icons/fa';
 
 import '../styles/SearchBar.css'
 
@@ -17,7 +17,7 @@ const SearchBar = ({value, onChange, onClick}) => {
         onChange= {onChange}
       />
       <button onClick={onClick}>
-        <BsSearch size={24} color="rgba(202, 18, 64, 0.8)" />
+        <FaSearch size={24} color="rgba(202, 18, 64, 0.8)" />
       </button>
     </div>
   </div>
