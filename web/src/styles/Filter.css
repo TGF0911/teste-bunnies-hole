@@ -22,8 +22,6 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
   border-bottom: 1px solid  rgba(196, 196, 196, 0.5);
   cursor: pointer;
 }
@@ -54,21 +52,6 @@
   line-height: 16px;
 }
 
-.select-box .selected .arrow::after {
-  content: "";
-  background-size: contain;
-
-  position: absolute;
-  height: 100%;
-
-  transition: all 0.4s;
-}
-
-.select-box .options-container + .selected .arrow::after {
-  transform: rotateX(180deg);
-  top: -6px;
-}
-
 .select-box .option,
 .selected {
   padding: 12px 24px;
@@ -86,6 +69,10 @@
 .select-box .option .radio {
   display: none;
 }
-.select-box .option .radio::after {
-  background-color: rgba(202, 18, 64, 0.8);
+
+.select-box .option .checked {
+  width: 10px;
+  height: 30px;
+  background-color: #CA1240;
+  border-radius: 10px 0px 0px 0px;
 }

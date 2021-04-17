@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logoImg from './assets/logo.png';
 import Card from './components/Card';
-import SelectButton from './components/SelectButton';
+import Filter from './components/Filter';
 import SearchBar from './components/SearchBar';
 
 import Loader from 'react-loader-spinner';
@@ -9,10 +9,6 @@ import Loader from 'react-loader-spinner';
 import api from './services/api';
 
 import './global.css'
-
-//Falta estilização dos selects
-//Falta colocar o Loader
-//Falta arrumar a parte no not found.
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -33,7 +29,7 @@ function App() {
     setIsLoading(true);
     setFound(true);
     await api.get('products/search', { params: { searchParams: searchParams } }).then(({ data }) => {
-      if (data.length === 0)  setFound(false);
+      if (data.length === 0) setFound(false);
       setProducts(data);
       setIsLoading(false)
     });
@@ -44,7 +40,7 @@ function App() {
     setIsLoading(true);
     setFound(true);
     await api.get('products/filter', { params: { filter: filter } }).then(({ data }) => {
-      if (data.length === 0)  setFound(false);
+      if (data.length === 0) setFound(false);
       setProducts(data);
       setIsLoading(false);
     });
@@ -83,8 +79,28 @@ function App() {
 
       {/* Select-Box */}
       <div className="selects">
-        <SelectButton name="Filtar por" onChange={filterBy}  />
-        <SelectButton name="Ordenar por" onChange={sortBy} />
+        <Filter
+          label="Filtar por"
+          type="checkbox"
+          name="filter"
+          options={[
+            { value: 'image', label: 'Imagem' },
+            { value: 'audio', label: 'Audio' },
+            { value: 'video', label: 'Video' }
+          ]}
+        />
+        <Filter 
+        label="Ordenar por" 
+        type="radio"
+        name="sort"
+        options={[
+          {value: 'last', label: 'Mais recentes'},
+          {value: 'older', label: 'Mais Antigo'},
+          {value: 'expensive', label: 'Mais Caro'},
+          {value: 'cheaper', label: 'Mais Barato'},
+          {value: 'rating', label: 'Avaliações'},
+        ]}
+        />
       </div>
 
 
