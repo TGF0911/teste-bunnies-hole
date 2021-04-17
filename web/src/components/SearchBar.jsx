@@ -3,8 +3,6 @@ import { FaSearch } from 'react-icons/fa';
 
 import '../styles/SearchBar.css'
 
-//Fazer o metodo dde busca no input
-
 const SearchBar = ({value, onChange, onClick}) => {
 
   return (

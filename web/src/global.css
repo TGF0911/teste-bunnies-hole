@@ -11,13 +11,13 @@ body{
 }
 
 .home-container{
-	width: 100vw;
+	width: 1440;
 	height: 100vh;
 }
 
 .home-container header{
 	width: 100%;
-	height: 210px;
+	height: 270px;
 	background: #CA1240;
 	border-radius: 0px 0px 20px 20px;
 
@@ -34,7 +34,7 @@ body{
 }
 
 .home-container header .text-header h1 {
-	font-size: 54px;
+	font-size: 56px;
 	font-weight: 500;
 	color: white;
 }
@@ -51,9 +51,9 @@ body{
 }
 
 .container {
-	padding: 20px;
-	display: flex;
+	padding: 64px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
-	flex-wrap: wrap;
 }
 

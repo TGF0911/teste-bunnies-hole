@@ -8,13 +8,10 @@ import photoImg from '../assets/imageThumb.png'
 
 import '../styles/Card.css';
 
-//Imagens diferentes para cada tipo de card  
-//{type, name, value, rating, thumbnail }
-
 const Card = (props) => {
 
   function thumbnailImg() {
-    if (props.thumbnail === "") {
+    if (props.thumbnail == "") {
       if (props.type == 'audio') return (<img src={audioImg} />);
       else if (props.type == 'video') return (<img src={videoImg} />);
       else return (<img src={photoImg} />);

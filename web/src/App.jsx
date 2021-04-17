@@ -21,7 +21,7 @@ function App() {
   const [found, setFound] = useState(true);
 
   useEffect(() => {
-    api.get('products').then(({ data }) => setProducts(data));
+    api.get('/products').then(({ data }) => setProducts(data));
     console.log(products)
   }, []);
 
@@ -74,27 +74,21 @@ function App() {
 
       {/* Card  */}
       <div className="container">
+
         {
-          found ?
-            products.map((product) => {
-              return (
+          products.map((product) => {
+            return (
                 <Card
-                  key={product._id}
+                key={product._id}
                   name={product.name}
                   value={product.value}
                   rating={product.rating}
                   type={product.type}
                   thumbnail={product.thumbnail}
-                />
-              )
-            }) : (
-              <div className="not-found">
-                <h2>Não há produtos com este nome.</h2>
-                <p>Tente novamente!</p>
-              </div>
-            )
-        }
-
+                  />
+                  )
+                }) 
+          }
       </div>
     </div>
   );

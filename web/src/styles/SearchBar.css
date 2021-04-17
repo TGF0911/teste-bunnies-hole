@@ -6,8 +6,8 @@
 .search-container .searchBar {
 	position: relative;
 	padding: 24px;
-	width: 400px;
-	height: 46px;
+	width: 450px;
+	height: 56px;
 	top: -30px;
 
 	background: #FFFFFF;
@@ -23,7 +23,7 @@
 	outline: none;
 	border: 0;	
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 18px;
 	color: #A2A2A2;
 }
 

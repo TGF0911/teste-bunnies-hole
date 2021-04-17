@@ -1,14 +1,14 @@
 .card-container  {
-	margin: 26px;
+	margin: 26px 40px;
 	width: 374px;
-	height: 260px;
+	height: 236px;
 	border-radius: 10px;
 	background-color: white;
 }
 
 .card-container  img {
 	width: 374px;
-	height: 160px;
+	height: 150px;
 	border-radius: 10px 10px 0px 0px;
 }
 
@@ -28,10 +28,12 @@
 }
 
 .card-container  .footer{ 
+	position: relative;
 	padding: 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	top: -20px;
 	margin-bottom: 40px;
 }
 
