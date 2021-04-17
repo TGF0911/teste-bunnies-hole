@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import logoImg from './assets/logo.png';
 import Card from './components/Card';
 import SelectButton from './components/SelectButton';
 import SearchBar from './components/SearchBar';
 
-
-import logoImg from './assets/logo.png';
+import Loader from 'react-loader-spinner';
 
 import api from './services/api';
 
@@ -19,33 +19,46 @@ function App() {
   const [searchParams, setSearchParams] = useState('');
   const [filter, setFilter] = useState('');
   const [found, setFound] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/products').then(({ data }) => setProducts(data));
-    console.log(products)
+    api.get('/products').then(({ data }) => {
+      setProducts(data);
+      setIsLoading(false);
+    });
   }, []);
 
   async function search(e) {
     e.preventDefault();
-    const response = await api.get('products/search', { params: { searchParams: searchParams } });
-
-    //Faer isso funcionar
-    if (!response.data) {
-      setFound(false)
-      console.log(found);
-    }
-    setProducts(response.data);
-    
+    setIsLoading(true);
+    setFound(true);
+    await api.get('products/search', { params: { searchParams: searchParams } }).then(({ data }) => {
+      if (data.length === 0)  setFound(false);
+      setProducts(data);
+      setIsLoading(false)
+    });
   }
 
-  async function filterBy() {
-    const response = await api.get('products/filter', { params: { filter: filter } });
-    setProducts(response.data);
+  async function filterBy(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    setFound(true);
+    await api.get('products/filter', { params: { filter: filter } }).then(({ data }) => {
+      if (data.length === 0)  setFound(false);
+      setProducts(data);
+      setIsLoading(false);
+    });
   }
 
-  async function sortBy() {
-    const response = await api.get('products/sortBy', { params: { filter: filter } });
-    setProducts(response.data);
+  async function sortBy(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    setFound(true);
+    await api.get('products/sortBy', { params: { filter: filter } }).then(({ data }) => {
+      if (data.length === 0) setFound(false);
+      setProducts(data);
+      setIsLoading(false);
+    });
   }
 
   return (
@@ -67,29 +80,58 @@ function App() {
         onClick={search}
       />
 
-      {/* Select-Box
+
+      {/* Select-Box */}
       <div className="selects">
-        <SelectButton />
-      </div> */}
+        <SelectButton name="Filtar por" onChange={filterBy}  />
+        <SelectButton name="Ordenar por" onChange={sortBy} />
+      </div>
+
 
       {/* Card  */}
-      <div className="container">
+      {
+        isLoading ? (
+          <div className="loader">
+            <Loader
+              type='ThreeDots'
+              color="#CA1240"
+              height={100}
+              width={100}
+              timeout={4000}
+            />
+          </div>
+        ) : (
+          <div>
+            {
+              !found ? (
+                <div className="not-found">
+                  <h2>Não encontramos nenhum item da sua busca.</h2>
+                  <p>Tente novamente mais tarde!</p>
+                </div>
 
-        {
-          products.map((product) => {
-            return (
-                <Card
-                key={product._id}
-                  name={product.name}
-                  value={product.value}
-                  rating={product.rating}
-                  type={product.type}
-                  thumbnail={product.thumbnail}
-                  />
-                  )
-                }) 
-          }
-      </div>
+              ) : (
+                <div className="container" >
+                  {
+                    products.map((product) => {
+                      return (
+                        <Card
+                          key={product._id}
+                          name={product.name}
+                          value={product.value}
+                          rating={product.rating}
+                          type={product.type}
+                          thumbnail={product.thumbnail}
+                        />
+                      )
+                    })
+                  }
+                </div>
+              )
+            }
+          </div>
+        )
+      }
+
     </div>
   );
 }

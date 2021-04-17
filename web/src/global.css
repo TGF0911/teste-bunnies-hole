@@ -17,7 +17,7 @@ body{
 
 .home-container header{
 	width: 100%;
-	height: 270px;
+	height: 260px;
 	background: #CA1240;
 	border-radius: 0px 0px 20px 20px;
 
@@ -46,14 +46,41 @@ body{
 }
 
 .selects{
+	margin-right: 100px;
 	display: flex;
 	justify-content: flex-end;
 }
 
 .container {
-	padding: 64px;
+	padding: 10px 64px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
 }
+
+.not-found {
+	padding: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #CA1240;
+}
+
+.not-found h2 {
+	font-weight: 700;
+	font-size: 34px;
+}
+
+.not-found p {
+	font-weight: 500;
+	font-size: 24px;	
+}
+
+ .loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 
