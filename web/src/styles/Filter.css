@@ -66,13 +66,13 @@
   cursor: pointer;
 }
 
-.select-box .option .radio {
+.select-box .option input {
   display: none;
 }
 
-.select-box .option .checked {
+.select-box .option-container .option input:checked {
   width: 10px;
-  height: 30px;
+  height: 10px;
   background-color: #CA1240;
   border-radius: 10px 0px 0px 0px;
 }
