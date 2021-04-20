@@ -44,9 +44,9 @@ const Filter = (props) => {
                   key={props.options.id}
                   id={option.value}
                   type='checkbox'
+                  onClick={!activeChecks[index] ? props.onClick : props.find}
                   value={option.value}
                   name={props.name}
-                  onClick={props.onClick}
                   checked={activeChecks[index]}
                 />
                 <label htmlFor={option.value}>{option.label}</label>

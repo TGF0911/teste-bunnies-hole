@@ -28,7 +28,7 @@ module.exports = {
   },
 
   async sortBy(req, res) {
-    const filter = req.query.sort;
+    const filter = req.query.filter;
     const products = await Product.find();
     const sort = utils.orderBy(filter, products);
     return res.json(sort);
