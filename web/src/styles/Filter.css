@@ -19,6 +19,7 @@
 }
 
 .select-box .option-container .option {
+  padding: 20px;
   position: relative;
   display: flex;
   align-items: center;
@@ -70,9 +71,9 @@
   display: none;
 }
 
-.select-box .option-container .option input:checked {
-  width: 10px;
-  height: 10px;
+.select-box .option-container .active-option {
+  width: 2px;
+  height: 40px;
   background-color: #CA1240;
   border-radius: 10px 0px 0px 0px;
 }

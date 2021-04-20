@@ -40,6 +40,7 @@ function App() {
     setIsLoading(true);
     setFound(true);
     await api.get('products/filter', { params: { filter: filter } }).then(({ data }) => {
+      console.log(filter)
       if (data.length === 0) setFound(false);
       setProducts(data);
       setIsLoading(false);
@@ -51,6 +52,7 @@ function App() {
     setIsLoading(true);
     setFound(true);
     await api.get('products/sortBy', { params: { filter: filter } }).then(({ data }) => {
+      console.log(filter)
       if (data.length === 0) setFound(false);
       setProducts(data);
       setIsLoading(false);
@@ -81,25 +83,33 @@ function App() {
       <div className="selects">
         <Filter
           label="Filtar por"
-          type="checkbox"
           name="filter"
+          value={filter}
+          onChange={(e) => {
+            setFilter(e.target.value)
+          }}
+          onClick={filterBy}
           options={[
             { value: 'image', label: 'Imagem' },
             { value: 'audio', label: 'Audio' },
             { value: 'video', label: 'Video' }
           ]}
         />
-        <Filter 
-        label="Ordenar por" 
-        type="radio"
-        name="sort"
-        options={[
-          {value: 'last', label: 'Mais recentes'},
-          {value: 'older', label: 'Mais Antigo'},
-          {value: 'expensive', label: 'Mais Caro'},
-          {value: 'cheaper', label: 'Mais Barato'},
-          {value: 'rating', label: 'Avaliações'},
-        ]}
+        <Filter
+          label="Ordenar por"
+          name="sort"
+          value={filter}
+          onChange={(e) => {
+            setFilter(e.target.value)
+          }}
+          onClick={sortBy}
+          options={[
+            { value: 'last', label: 'Mais recentes' },
+            { value: 'older', label: 'Mais Antigo' },
+            { value: 'expensive', label: 'Mais Caro' },
+            { value: 'cheaper', label: 'Mais Barato' },
+            { value: 'rating', label: 'Avaliações' },
+          ]}
         />
       </div>
 
